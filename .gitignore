@@ -1,0 +1,10 @@
+#Logs
+/PentahoLogs/*
+*.log
+
+#Others
+/Data/*
+*.gz
+*.zip
+
+

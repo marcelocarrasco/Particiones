@@ -31,48 +31,7 @@ BEGIN
                      PARTICION_ESQUEMA_MSC_FECHA,
                      PARTICION_FORMATO_MSC_FECHA,
                      '100K' PARTICION_EXTENT_INITIAL
-                FROM (SELECT  TABLE_NAME                                                    NOMBRE_TABLA
-                              ,case
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'HOUR' 
-                                        THEN 'TBS_HOUR'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) IN ('BH','DAY') 
-                                        THEN 'TBS_DAY'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'IBHW' 
-                                        THEN 'TBS_SUMMARY'
-                              end NOMBRE_TABLESPACE
-                              ,REPLACE(SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',1)+1),'_','') PARTICION_ESQUEMA
-                              ,case
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'HOUR' 
-                                        THEN 'YYYYMMDDHH24'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'BH'
-                                        THEN 'YYYYMMDD'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'DAY'
-                                        THEN 'YYYYMMDD'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'IBHW'
-                                        THEN 'YYYYMM'
-                              end PARTICION_ESQUEMA_MSC_FECHA
-                              ,case
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'HOUR'
-                                        THEN 'YYYY.MM.DD HH24'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) IN ('BH','DAY','IBHW')
-                                        THEN 'DD.MM.YYYY'
-                              end PARTICION_FORMATO_MSC_FECHA
-                              ,case
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'HOUR'
-                                        THEN 'Hourly'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) IN ('BH','DAY')
-                                        THEN 'Daily'
-                                  WHEN SUBSTR(TABLE_NAME,INSTR(TABLE_NAME,'_',-1,1)+1,LENGTH(TABLE_NAME)) = 'IBHW'
-                                        THEN 'Weekly'
-                              end PARTICION_TIPO_TABLA
-                              ,REPLACE(TABLE_NAME,'_','')                                   ID_TABLA
-                              ,'ENABLED'                                                    OBSERVACIONES
-                              ,NULL                                                         DESCRIPCION_TABLA
-                              ,'ENABLED'                                                    PARTICION_PERMISO_CREATE
-                              ,'ENABLED'                                                    PARTICION_PERMISO_DROP
-                      FROM USER_TABLES
-                      WHERE TABLE_NAME NOT LIKE '%_AUX'
-                      ) CALIDAD_PARAMETROS_TABLAS
+               FROM  CALIDAD_PARAMETROS_TABLAS
                WHERE PARTICION_TIPO_TABLA = '&3'
                AND DECODE('&2', 'Drop', PARTICION_PERMISO_DROP, 'Create', PARTICION_PERMISO_CREATE) = 'ENABLED'
                ORDER BY NOMBRE_TABLESPACE, NOMBRE_TABLA)LOOP
