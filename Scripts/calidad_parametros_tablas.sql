@@ -1,5 +1,21 @@
+CREATE TABLE CONTROL_PARTICIONES(
+  ID_TABLA    AS (REPLACE(TABLA_A,'_','')),
+  TABLA_A     VARCHAR2(30 CHAR) NOT NULL,
+  VALOR_PRE   NUMBER NOT NULL,
+  TABLA_B     VARCHAR2(30 CHAR) NOT NULL,
+  VALOR_POST  NUMBER NOT NULL,
+  DIFERENCIA  AS (VALOR_POST-VALOR_PRE)
+)NOLOGGING;
 
-
+COMMENT ON TABLE CONTROL_PARTICIONES IS 'Es utilizada para controlar que el total de particiones (HOUR,DAY,MONTH) se crearan correctamente';
+COMMENT ON COLUMN CONTROL_PARTICIONES.ID_TABLA IS 'Identificador de la TABLA_A, debe coincidir con CALIDAD_PARAMETROS_TABLAS';
+COMMENT ON COLUMN CONTROL_PARTICIONES.TABLA_A IS 'Nombre de la tabla a la que se le crean las particiones';
+COMMENT ON COLUMN CONTROL_PARTICIONES.TABLA_B IS 'Idem TABLA_A';
+COMMENT ON COLUMN CONTROL_PARTICIONES.VALOR_PRE IS 'Cantidad de particiones de la TABLA_A antes de correr el script que crea las particiones';
+COMMENT ON COLUMN CONTROL_PARTICIONES.VALOR_POST IS 'Cantidad de particiones de la TABLA_A despues de correr el script que crea las particiones';
+COMMENT ON COLUMN CONTROL_PARTICIONES.DIFERENCIA IS 'Total de particiones creadas por el script';
+--**--**--**--
+--**--**--**--
 
 CREATE TABLE CALIDAD_PARAMETROS_TABLAS 
 (
