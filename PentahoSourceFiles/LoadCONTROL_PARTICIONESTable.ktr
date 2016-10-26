@@ -121,13 +121,13 @@
   </notepads>
   <connection>
     <name>falda.claro.amx</name>
-    <server>falda.claro.amx</server>
+    <server>&#x24;&#x7b;DB-HOST&#x7d;</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>DSMART2</database>
-    <port>1521</port>
-    <username>mcarrasco</username>
-    <password>Encrypted 2be98afc86ae4938aa81cbc72db80a088</password>
+    <database>&#x24;&#x7b;DB-NAME&#x7d;</database>
+    <port>&#x24;&#x7b;DB-PORT&#x7d;</port>
+    <username>&#x24;&#x7b;DB-USER&#x7d;</username>
+    <password>&#x24;&#x7b;DB-PASSWORD&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -135,7 +135,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;DB-PORT&#x7d;</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
@@ -203,7 +203,7 @@
     <ini_section_field/>
     <section/>
     <file>
-      <name>&#x2f;home&#x2f;oracle&#x2f;Particiones&#x2f;Data&#x2f;particiones_post_script.properties</name>
+      <name>&#x24;&#x7b;PARTICIONES-HOME&#x7d;&#x2f;Data&#x2f;particiones_post_script.properties</name>
       <exclude_filemask/>
       <filemask/>
       <file_required>N</file_required>
@@ -280,7 +280,7 @@
     <ini_section_field/>
     <section/>
     <file>
-      <name>&#x2f;home&#x2f;oracle&#x2f;Particiones&#x2f;Data&#x2f;particiones_pre_script.properties</name>
+      <name>&#x24;&#x7b;PARTICIONES-HOME&#x7d;&#x2f;Data&#x2f;particiones_pre_script.properties</name>
       <exclude_filemask/>
       <filemask/>
       <file_required>N</file_required>

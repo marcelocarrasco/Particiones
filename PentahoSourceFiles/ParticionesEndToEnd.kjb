@@ -27,6 +27,30 @@
             <description>Hourly, Daily, etc.</description>
         </parameter>
     </parameters>
+  <connection>
+    <name>falda.claro.amx</name>
+    <server>&#x24;&#x7b;DB-HOST&#x7d;</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;DB-NAME&#x7d;</database>
+    <port>&#x24;&#x7b;DB-PORT&#x7d;</port>
+    <username>&#x24;&#x7b;DB-USER&#x7d;</username>
+    <password>&#x24;&#x7b;DB-PASSWORD&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;DB-PORT&#x7d;</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
     <slaveservers>
          <slaveserver><name>SlaveOne</name><hostname>127.0.0.1</hostname><port>9002</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>N</master><sslMode>N</sslMode></slaveserver>
          <slaveserver><name>localhost</name><hostname>localhost</hostname><port>8085</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>N</master><sslMode>N</sslMode></slaveserver>
@@ -314,11 +338,11 @@
       <name>Crear Particiones</name>
       <description/>
       <type>SQL</type>
-      <sql>ALTER TABLE MI_TABLA ADD PARTITION MITABLA2016100900 VALUES LESS THAN &#x28;TO_DATE&#x28;&#x27;09.10.2016 01&#x27;,&#x27;DD.MM.YYYY HH24&#x27;&#x29;&#x29; TABLESPACE DEVELOPER PCTFREE 10 PCTUSED 80&#x3b;</sql>
+      <sql/>
       <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
+      <sqlfromfile>T</sqlfromfile>
       <sqlfilename>&#x24;&#x7b;PARTICIONES-HOME&#x7d;&#x2f;Data&#x2f;q_create_partitions.sql</sqlfilename>
-      <sendOneStatement>T</sendOneStatement>
+      <sendOneStatement>F</sendOneStatement>
       <connection>falda.claro.amx</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -387,7 +411,7 @@
       <to>Particiones post Script</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -396,7 +420,7 @@
       <to>Load CONTROL_PARTICIONES Table</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -405,7 +429,7 @@
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -414,13 +438,22 @@
       <to>Crear Particiones</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Crear Particiones</from>
       <to>Set nombre PARTICIONES-POST</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Particiones Pre Script</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
