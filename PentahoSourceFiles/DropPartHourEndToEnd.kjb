@@ -1,17 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>SendMail</name>
+  <name>DropPartHourEndToEnd</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2016&#x2f;03&#x2f;30 15&#x3a;02&#x3a;12.111</created_date>
+  <created_date>2017&#x2f;03&#x2f;29 11&#x3a;46&#x3a;25.452</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2016&#x2f;03&#x2f;30 15&#x3a;02&#x3a;12.111</modified_date>
+  <modified_date>2017&#x2f;03&#x2f;29 11&#x3a;46&#x3a;25.452</modified_date>
     <parameters>
+        <parameter>
+            <name>CANT-MESES</name>
+            <default_value>2</default_value>
+            <description>Cantidad de meses &#x28;semanas&#x29; de retencion de particiones, se borran todas las particiones anteriores a ocho &#x28;8&#x29; semanas</description>
+        </parameter>
+        <parameter>
+            <name>FECHA-PROC</name>
+            <default_value>06.04.2017</default_value>
+            <description/>
+        </parameter>
     </parameters>
+  <connection>
+    <name>db_connection</name>
+    <server>&#x24;&#x7b;DB-HOST&#x7d;</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;DB-NAME&#x7d;</database>
+    <port>&#x24;&#x7b;DB-PORT&#x7d;</port>
+    <username>&#x24;&#x7b;DB-USER&#x7d;</username>
+    <password>&#x24;&#x7b;DB-PASSWORD&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;DB-PORT&#x7d;</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
     <slaveservers>
     </slaveservers>
 <job-log-table><connection/>
@@ -52,91 +86,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>64</xloc>
-      <yloc>128</yloc>
-      </entry>
-    <entry>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>672</xloc>
-      <yloc>128</yloc>
-      </entry>
-    <entry>
-      <name>Mail</name>
-      <description/>
-      <type>MAIL</type>
-      <server>&#x24;&#x7b;SMTP-SERVER&#x7d;</server>
-      <port>&#x24;&#x7b;SMTP-PORT&#x7d;</port>
-      <destination>&#x24;&#x7b;MAILING-LIST&#x7d;</destination>
-      <destinationCc/>
-      <destinationBCc/>
-      <replyto>&#x24;&#x7b;SENDER-ADDRESS&#x7d;</replyto>
-      <replytoname>Proc. Autom&#xe1;tico Creaci&#xf3;n de Particiones</replytoname>
-      <subject>Reporte de Particiones Creadas</subject>
-      <include_date>Y</include_date>
-      <contact_person/>
-      <contact_phone/>
-      <comment>Se adjunta archivos.</comment>
-      <include_files>Y</include_files>
-      <zip_files>N</zip_files>
-      <zip_name/>
-      <use_auth>N</use_auth>
-      <use_secure_auth>N</use_secure_auth>
-      <auth_user/>
-      <auth_password>Encrypted </auth_password>
-      <only_comment>Y</only_comment>
-      <use_HTML>Y</use_HTML>
-      <use_Priority>N</use_Priority>
-      <encoding>UTF-8</encoding>
-      <priority>normal</priority>
-      <importance>normal</importance>
-      <sensitivity>normal</sensitivity>
-      <secureconnectiontype>SSL</secureconnectiontype>
-      <replyToAddresses/>
-      <filetypes>        <filetype>GENERAL</filetype>
-      </filetypes>      <embeddedimages>
-      </embeddedimages>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>496</xloc>
-      <yloc>128</yloc>
-      </entry>
-    <entry>
-      <name>SelectFiles</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;SelectFiles.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>Y</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>128</yloc>
+      <yloc>96</yloc>
       </entry>
     <entry>
       <name>SetEnvironment</name>
@@ -168,29 +118,70 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
-      <yloc>128</yloc>
+      <xloc>208</xloc>
+      <yloc>96</yloc>
+      </entry>
+    <entry>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>768</xloc>
+      <yloc>96</yloc>
+      </entry>
+    <entry>
+      <name>GetDropHOURPartitionSentences</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;GetDropHOURPartitionSentences.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>408</xloc>
+      <yloc>96</yloc>
+      </entry>
+    <entry>
+      <name>SQL</name>
+      <description/>
+      <type>SQL</type>
+      <sql/>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>T</sqlfromfile>
+      <sqlfilename>&#x24;&#x7b;PARTICIONES-HOME&#x7d;&#x2f;Data&#x2f;drop_hour_partition_sentences_&#x24;&#x7b;FECHA-PROC&#x7d;.sql</sqlfilename>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>db_connection</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>560</xloc>
+      <yloc>208</yloc>
       </entry>
   </entries>
   <hops>
-    <hop>
-      <from>Mail</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>SelectFiles</from>
-      <to>Mail</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>START</from>
       <to>SetEnvironment</to>
@@ -202,7 +193,34 @@
     </hop>
     <hop>
       <from>SetEnvironment</from>
-      <to>SelectFiles</to>
+      <to>GetDropHOURPartitionSentences</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>GetDropHOURPartitionSentences</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>GetDropHOURPartitionSentences</from>
+      <to>SQL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -211,6 +229,27 @@
     </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Borra todas las particiones de tablas HOUR manteniendo 8 semanas de historico</note>
+      <xloc>112</xloc>
+      <yloc>16</yloc>
+      <width>554</width>
+      <heigth>27</heigth>
+      <fontname>Sans</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
 
 </job>

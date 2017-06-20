@@ -11,7 +11,7 @@ COMMENT
 RUTA='/home/oracle/Particiones'
 # RUTA='/home/calidad/Particiones' # para CORTADO
 
-sqlplus -S $4/$5@$6 @$RUTA/Scripts/createPartitions.sql $1 $2 $3 $RUTA/Data/q_create_partitions.sql > /dev/null
+sqlplus  $4/$5@$6 @$RUTA/Scripts/createPartitions.sql $1 $2 $3 $RUTA/Data/q_create_partitions.sql > /dev/null
 # Limpio todas las filas que no corresponden a las sentencias alter 
 # echo "--Limpieza -----------"
 #sed -i -n '/--INICIO/,$!d' $RUTA/q_create_partitions.sql

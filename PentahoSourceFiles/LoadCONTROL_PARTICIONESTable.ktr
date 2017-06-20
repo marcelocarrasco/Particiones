@@ -120,7 +120,7 @@
   <notepads>
   </notepads>
   <connection>
-    <name>falda.claro.amx</name>
+    <name>db_connection</name>
     <server>&#x24;&#x7b;DB-HOST&#x7d;</server>
     <type>ORACLE</type>
     <access>Native</access>
@@ -410,7 +410,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>falda.claro.amx</connection>
+    <connection>db_connection</connection>
     <schema/>
     <table>CONTROL_PARTICIONES</table>
     <commit>1000</commit>
